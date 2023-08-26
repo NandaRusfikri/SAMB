@@ -1,0 +1,200 @@
+definitions:
+  schemas.PenerimaanBarangDetailRequest:
+    properties:
+      TrxInDProductIdf:
+        type: integer
+      TrxInDQtyDus:
+        type: integer
+      TrxInDQtyPcs:
+        type: integer
+      TrxInIDF:
+        type: integer
+    type: object
+  schemas.PenerimaanBarangHeaderRequest:
+    properties:
+      TrxInNo:
+        example: TRX-001
+        type: string
+      TrxInNotes:
+        example: catatan
+        type: string
+      TrxInSuppIdf:
+        example: 1
+        type: integer
+      WhsIdf:
+        example: 1
+        type: integer
+    type: object
+info:
+  contact:
+    email: nandarusfikri@gmail.com
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server celler server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: SAMB-BE
+  version: "1.0"
+paths:
+  /v1/barang_masuk/detail:
+    post:
+      consumes:
+      - application/json
+      description: CreatePenerimaanBarangDetailController
+      operationId: CreatePenerimaanBarangDetailController
+      parameters:
+      - description: body data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/schemas.PenerimaanBarangDetailRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: Create Penerimaan Barang Detail
+      tags:
+      - PenerimaanBarang
+  /v1/barang_masuk/detail/{TrxInPK}:
+    get:
+      consumes:
+      - application/json
+      description: ListBarangMasukDetailController
+      operationId: ListBarangMasukDetailController
+      parameters:
+      - description: TrxInPK
+        in: path
+        name: TrxInPK
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: ListBarangMasukDetailController
+      tags:
+      - PenerimaanBarang
+  /v1/barang_masuk/header:
+    get:
+      consumes:
+      - application/json
+      description: ListBarangMasukHeaderController
+      operationId: ListBarangMasukHeaderController
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: ListBarangMasukHeaderController
+      tags:
+      - PenerimaanBarang
+    post:
+      consumes:
+      - application/json
+      description: CreatePenerimaanBarangHeaderController
+      operationId: CreatePenerimaanBarangHeaderController
+      parameters:
+      - description: body data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/schemas.PenerimaanBarangHeaderRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: Create Penerimaan Barang Header
+      tags:
+      - PenerimaanBarang
+  /v1/barang_masuk/header/{TrxInPK}:
+    get:
+      consumes:
+      - application/json
+      description: GetByIdBarangMasukHeaderController
+      operationId: GetByIdBarangMasukHeaderController
+      parameters:
+      - description: TrxInPK
+        in: path
+        name: TrxInPK
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: GetByIdBarangMasukHeaderController
+      tags:
+      - PenerimaanBarang
+  /v1/products:
+    get:
+      consumes:
+      - application/json
+      description: ListProductController
+      operationId: ListProductController
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: ListProductController
+      tags:
+      - MasterProduct
+  /v1/suppliers:
+    get:
+      consumes:
+      - application/json
+      description: ListSupplierController
+      operationId: ListSupplierController
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: ListSupplierController
+      tags:
+      - MasterSupplier
+  /v1/warehouses:
+    get:
+      consumes:
+      - application/json
+      description: ListWareHouseController
+      operationId: ListWareHouseController
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: ListWareHouseController
+      tags:
+      - MasterWareHouse
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+    x-extension-openapi: '{"example": "value on a json format"}'
+swagger: "2.0"
